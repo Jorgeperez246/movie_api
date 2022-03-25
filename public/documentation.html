@@ -24,11 +24,11 @@
       <tbody>
         <tr>
           <td>List of movies to the user</td>
-          <td>/movies</td>
+          <td>/movies/[id]</td>
           <td>GET</td>
+          <td>:id</td>
           <td>None</td>
-          <td>None</td>
-          <td>JSON object holding data about all movies</td>
+          <td>JSON object holding data about all favorite movies to a user</td>
         </tr>
         <tr>
           <td>Return data about a single movie by title to the user</td>
@@ -165,7 +165,7 @@
         </tr>
         <tr>
           <td>Allow users to remove a movie from their list of favorites</td>
-          <td>/users/[id]/[movie]</td>
+          <td>/users/[id]/[movie]</td>   
           <td>DELETE</td>
           <td>:id, :movie</td>
           <td>None</td>

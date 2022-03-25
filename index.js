@@ -13,7 +13,7 @@ let users = [
   {
     id: 1,
     name: "Jorge",
-    favoriteMovies: [],
+    favoriteMovies: ["Up!"],
   },
 ];
 let movies = [
@@ -106,8 +106,10 @@ app.delete("/users/:id", (req, res) => {
 app.get("/", (req, res) => {
   res.send("Welcome to my myFlix site");
 });
-app.get("/movies", (req, res) => {
-  res.status(200).json(movies);
+app.get("/movies/:id", (req, res) => {
+  const { id } = req.params;
+  let user = users.find((user) => user.id == id);
+  res.status(200).json(user.favoriteMovies);
 });
 app.get("/movies/:title", (req, res) => {
   const { title } = req.params;
