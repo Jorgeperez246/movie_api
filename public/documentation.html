@@ -24,9 +24,9 @@
       <tbody>
         <tr>
           <td>List of movies to the user</td>
-          <td>/movies/[id]</td>
+          <td>/movies</td>
           <td>GET</td>
-          <td>:id</td>
+          <td>None</td>
           <td>None</td>
           <td>JSON object holding data about all favorite movies to a user</td>
         </tr>
@@ -34,29 +34,26 @@
           <td>Return data about a single movie by title to the user</td>
           <td>/movies/[title]</td>
           <td>GET</td>
-          <td>:title</td>
+          <td>:Title</td>
           <td>None</td>
           <td>JSON object holding data about the selected movie Ex: 
             <pre>
               <code>
-    {
-      Title: '', 
-      Description: '',
-      Year: '', 
-      Genre: {
-        name: '',
-        description: ''
-      } 
-      Director: {
-        name: '', 
-        birth: '',
-        death: ''
-        bio: ''
-      },
-      Actors: {
-  
-      }
-      ImagePath: ''
+                {
+                  Title: { type: String, required: true },
+                  Description: { type: String, required: true },
+                  Genre: {
+                    Name: String,
+                    Bio: String,
+                  },
+                  Director: {
+                    Name: String,
+                    Bio: String,
+                  },
+                  Actors: [String],
+                  ImagePath: [String],
+                  Featured: Boolean,
+                }
     
               </code>
             </pre>
@@ -64,17 +61,18 @@
         </tr>
         <tr>
           <td>Data about a genre by name</td>
-          <td>/movies/genres/[genre]</td>
+          <td>/movies/genres/[name]</td>
           <td>GET</td>
-          <td>:genre</td>
+          <td>:Name</td>
           <td>None</td>
           <td>JSON object holding data about genre. Ex:
             <pre>
               <code>
-    { 
-      name: 'Sci-fi', 
-      description: '', 
-    }
+                {
+                  GenreID: Number,
+                  Name: String,
+                  Description: String,
+                }
               </code>
             </pre>
           </td>
@@ -83,17 +81,17 @@
           <td>Data about a director  by name</td>
           <td>/movies/directors/[name]</td>
           <td>GET</td>
-          <td>:name</td>
+          <td>:Name</td>
           <td>None</td>
           <td>JSON object holding data about director. Ex: 
             <pre>
               <code>
-    { 
-      name: 'James Cameron', 
-      birth: '1954', 
-      death: '-',
-      bio: ''
-    }
+                {
+                  Name: String,
+                  Bio: String,
+                  Birth: Date,
+                  Death: Date,
+                }
               </code>
             </pre>
           </td>
@@ -132,14 +130,15 @@
         </tr>
         <tr>
           <td>Allow users to update their user info</td>
-          <td>/users/[id]</td>
+          <td>/users/[username]</td>
           <td>PUT</td>
-          <td>:id</td>
-          <td> A JSON object holding the new username. Ex:
+          <td>:Username</td>
+          <td> A JSON object holding the new password. Ex:
             <pre>
               <code>
     { 
-      "name": "Kim"
+      "name": "Kim",
+      "password": "1234"
     }
               </code>
             </pre>
@@ -150,6 +149,7 @@
     { 
       id: '1',
       name: 'Kim', 
+      password: 1234
     }
               </code>
             </pre>
@@ -157,27 +157,27 @@
         </tr>
         <tr>
           <td>Allow users to add a movie to their list of favorites</td>
-          <td>/users/[id]/[movie]</td>
+          <td>/users/[username]/movies/[movieid]</td>
           <td>POST</td>
-          <td>:id, :movie</td>
+          <td>:Username, :MovieID</td>
           <td>None</td>
-          <td>Message indicating the movie was added</td>
+          <td>Movie ID added to user's list of favorites</td>
         </tr>
         <tr>
           <td>Allow users to remove a movie from their list of favorites</td>
-          <td>/users/[id]/[movie]</td>   
+          <td>/users/[username]/movies/[movieid]</td>   
           <td>DELETE</td>
-          <td>:id, :movie</td>
+          <td>:Username, :MovieID</td>
           <td>None</td>
-          <td>Message indicating the movie was deleted</td>
+          <td>Movie ID gets removed from user's list of favorites</td>
         </tr>
         <tr>
           <td>Deletes a user</td>
-          <td>/users/[id]</td>
+          <td>/users/[username]</td>
           <td>DELETE</td>
-          <td>:id</td>
+          <td>:Username</td>
           <td>None</td>
-          <td>Messege stating user has been deleted</td>
+          <td>Message stating user has been deleted</td>
         </tr>
       </tbody>
     </table></div>
