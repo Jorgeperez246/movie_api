@@ -1,3 +1,8 @@
+mongoose.connect(process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 const express = require("express"),
   morgan = require("morgan"),
   bodyparser = require("body-parser"),
@@ -298,8 +303,4 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
   console.log("Listening on Port " + port);
-});
-mongoose.connect(process.env.CONNECTION_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
 });
