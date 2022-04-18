@@ -10,6 +10,11 @@ require("./passport");
 
 const { check, validationResult } = require("express-validator");
 
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 const Movies = Models.Movie,
   Users = Models.User,
   Genres = Models.Genre,
@@ -298,8 +303,4 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
   console.log("Listening on Port " + port);
-});
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
 });
