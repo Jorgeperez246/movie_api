@@ -10,13 +10,10 @@ require("./passport");
 
 const { check, validationResult } = require("express-validator");
 
-mongoose.connect(
-  "mongodb+srv://jorgeperez246:puertorico@myflixdb.l1njf.mongodb.net/myFlixDB?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const Movies = Models.Movie,
   Users = Models.User,
