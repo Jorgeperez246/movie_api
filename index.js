@@ -10,7 +10,8 @@ require("./passport");
 
 const { check, validationResult } = require("express-validator");
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect('mongodb+srv://jorgeperez246:puertorico@myflixdb.l1njf.mongodb.net/myFlixDB?retryWrites=true&w=majority'
+{
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
